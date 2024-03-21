@@ -40,8 +40,12 @@ deleteBtn.addEventListener("dblclick", function() {
 })
 
 inputBtn.addEventListener("click", function() {
-    myLeads.push(inputEl.value)
+    let inputUrl = inputEl.value.trim()
+    if (!inputUrl.startsWith("http://") && !inputUrl.startsWith("https://")) {
+        inputUrl = "https://" + inputUrl
+    }
+    myLeads.push(inputUrl)
     inputEl.value = ""
-    localStorage.setItem("myLeads", JSON.stringify(myLeads) )
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
     render(myLeads)
 })
